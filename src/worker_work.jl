@@ -61,8 +61,11 @@ function contributor_user(dict)
     )
 end
 
-function package_docs(name, url, version, buildpath)
-    pspec = PackageSpec(name = name, url = url, rev = string('v', version))
+function package_docs(name, url, version, buildpath; uuid=nothing)
+    if url == ""
+        pspec = PackageSpec(name = name, version = version))
+    else
+        pspec = PackageSpec(name = name, url = url, rev = string('v', version))
 
     @info("Generating docs for $name")
     doctype = :default
